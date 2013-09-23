@@ -18,13 +18,13 @@ def get_project(db, id):
     return None
 
 def get_techniques(db):
-    lsd = []
+    lst = []
     for project in db:
         for technique in project["techniques_used"]:
-            if not technique in lsd:
-                lsd.append(technique)
-    lsd.sort()
-    return lsd
+            if not technique in lst:
+                lst.append(technique)
+    lst.sort()
+    return lst
 
 def get_technique_stats(db): 
     #Enda som gör att denna funktionen inte klarar data_test.py är att värdena för result['python'] kommer i fel ordning..
@@ -42,7 +42,7 @@ def get_technique_stats(db):
 
 def search(db, sort_by=u'start_date', sort_order=u'desc', techniques=None, 
 search=None, search_fields=None):
-    return_list = [] #List for storage of matching projects
+    result = [] #List for storage of matching projects
     for project in db:
         project_found = False #Assume project doesn't match search reqs
         field_list = list(project.values()) #Create a list with project dict values
@@ -76,11 +76,11 @@ search=None, search_fields=None):
             project_found = True            
                 
         if project_found == True:
-            return_list.append(project)  
+            result.append(project)  
 
     #Sort list ***************************
-    return_list.sort(key=itemgetter(sort_by))
+    result.sort(key=itemgetter(sort_by))
     if sort_order == 'desc':
-        return_list.reverse()
+        result.reverse()
 
-    return return_list
+    return result
