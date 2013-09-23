@@ -25,14 +25,20 @@ def get_techniques(db):
                 lsd.append(technique)
     lsd.sort()
     return lsd
-"""
-def get_techniques_stats(db):
-    lsd = get_techniques(db)
 
-    dct = {}
-    for technique in lsd:
-        dct[technique] = 
-"""     
+def get_technique_stats(db): 
+    #Enda som gör att denna funktionen inte klarar data_test.py är att värdena för result['python'] kommer i fel ordning..
+    #Måste fixas..
+    result = {}
+    techniques = get_techniques(db)
+    for technique in techniques: #Creates dict with all techniques as keys, no values
+        result[technique] = []
+
+    for project in db: #Fills the dict with projects matching the key
+        for technique in techniques:
+            if technique in project["techniques_used"]:
+                result[technique].append({u'id': project["project_no"], u'name': project["project_name"]})
+    return result
 
 def search(db, sort_by=u'start_date', sort_order=u'desc', techniques=None, 
 search=None, search_fields=None):
