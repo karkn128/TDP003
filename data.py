@@ -3,10 +3,9 @@ from operator import itemgetter
 
 def load(filename):
     try:
-        jsondata = open(filename)
-        data = json.load(jsondata)
-        jsondata.close()
-        return data
+        with open(filename) as f:
+            data = json.load(f)
+            return data
     except: return None
 
 def get_project_count(db):
