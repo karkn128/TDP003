@@ -18,26 +18,26 @@ def get_project(db, id):
     return None
 
 def get_techniques(db):
-    lst = []
+    result = []
     for project in db:
         for technique in project["techniques_used"]:
-            if not technique in lst:
-                lst.append(technique)
-    lst.sort()
-    return lst
+            if not technique in result:
+                result.append(technique)
+    result.sort()
+    return result
 
 def get_technique_stats(db): 
-    #Enda som gör att denna funktionen inte klarar data_test.py är att värdena för result['python'] kommer i fel ordning..
-    #Måste fixas..
     result = {}
     techniques = get_techniques(db)
-    for technique in techniques: #Creates dict with all techniques as keys, no values
+    for technique in techniques: #Creates dict with all techniques as keys, empty lists as values
         result[technique] = []
 
-    for project in db: #Fills the dict with projects matching the key
-        for technique in techniques:
+    for technique in techniques: #Fills the dict with projects matching the key
+        for project in db:
             if technique in project["techniques_used"]:
                 result[technique].append({u'id': project["project_no"], u'name': project["project_name"]})
+        result[technique] = sorted(result[technique], key=itemgetter(u'name')) #Sorterar listan med dicts..
+
     return result
 
 def search(db, sort_by=u'start_date', sort_order=u'desc', techniques=None, 
