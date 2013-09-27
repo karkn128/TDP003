@@ -36,7 +36,7 @@ def get_technique_stats(db):
         for project in db:
             if technique in project["techniques_used"]:
                 result[technique].append({u'id': project["project_no"], u'name': project["project_name"]})
-        result[technique].sort(key=itemgetter(u'name')) #Sorterar listan med dicts..
+        result[technique].sort(key=itemgetter(u'name'))
 
     return result
 
