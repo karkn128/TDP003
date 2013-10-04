@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,
 import data
 app = Flask(__name__)
 app.debug = True
@@ -11,7 +11,10 @@ def start():
 
 @app.route("/list")
 def list():
-    return render_template("list.html")
+	project_list = []
+	for project in db:
+		project_list.append(project)
+	return render_template("list.html", data=project_list)
 
 @app.route("/project/<id>")
 def project(id):
@@ -20,6 +23,11 @@ def project(id):
 @app.route("/techniques")
 def techniques():
     return render_template("techniques.html")
+
+@app.route("/search", methods=['POST'])
+def search():
+    term = request.form['key']
+    return "search for " + term
 
 
 if __name__ == "__main__":
