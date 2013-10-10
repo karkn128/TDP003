@@ -1,4 +1,4 @@
-from flask import Flask, render_template,
+from flask import Flask, render_template
 import data
 app = Flask(__name__)
 app.debug = True
@@ -22,7 +22,7 @@ def project(id):
 
 @app.route("/techniques")
 def techniques():
-    return render_template("techniques.html")
+    return render_template("techniques.html", data=data.get_technique_stats(db))
 
 @app.route("/search", methods=['POST'])
 def search():
