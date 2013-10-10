@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from flask import Flask, render_template, request
+=======
+from flask import Flask, render_template
+>>>>>>> da3d0df705f447e7bca98a6fc6d27c3de11f5adf
 import data
 app = Flask(__name__)
 app.debug = True
@@ -22,7 +26,7 @@ def project(id):
 
 @app.route("/techniques")
 def techniques():
-    return render_template("techniques.html")
+    return render_template("techniques.html", data=data.get_technique_stats(db))
 
 @app.route("/search", methods=['POST'])
 def search():
