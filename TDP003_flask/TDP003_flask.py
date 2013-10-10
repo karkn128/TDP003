@@ -1,4 +1,4 @@
-from flask import Flask, render_template,
+from flask import Flask, render_template, request
 import data
 app = Flask(__name__)
 app.debug = True
@@ -26,8 +26,9 @@ def techniques():
 
 @app.route("/search", methods=['POST'])
 def search():
-    term = request.form['key']
-    return "search for " + term
+    search_word = request.form['search_word']
+    print(request.form['search_field'])
+    return render_template("list.html", data=data.search(db, search=search_word))
 
 
 if __name__ == "__main__":

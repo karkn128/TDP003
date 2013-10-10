@@ -1,9 +1,21 @@
 {% extends "layout.html" %}
 
+
 {% block content %}
 <form action="search" method="POST">
-    <input name="key"></input>
-    <input type="submit" value="Do search"></input>
+    <input name="search_word"></input>
+    <br>
+    <input type="checkbox" name="search_field" value="project_no" checked="checked">Projekt ID
+    <input type="checkbox" name="search_field" value="project_name" checked="checked">Projektnamn
+    <input type="checkbox" name="search_field" value="course_name" checked="checked">Course name
+    <input type="checkbox" name="search_field" value="Course id" checked="checked">Course ID
+    <input type="checkbox" name="search_field" value="start_date" checked="checked">Start date
+    <input type="checkbox" name="search_field" value="end_date" checked="checked">End Date
+    <input type="checkbox" name="search_field" value="group_size" checked="checked">Group size
+    <input type="checkbox" name="search_field" value="academic_credits" checked="checked">Academic credits
+    <input type="checkbox" name="search_field" value="techniques" checked="checked">Techniques
+    <br>
+    <input type="submit" value="Search"></input>
 </form>
 {% for project in data %}
 	<li>Projekt id: {{project["project_no"]}}</li>
@@ -21,6 +33,7 @@
 		{% endfor %}
 	</ul>
 	<li>Description: {{project["long_description"]}}</li>
+	<br>
 {% endfor %}
 
 {% endblock %}
