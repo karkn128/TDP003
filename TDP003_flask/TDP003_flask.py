@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 from flask import Flask, render_template, request
-=======
 from flask import Flask, render_template
->>>>>>> da3d0df705f447e7bca98a6fc6d27c3de11f5adf
 import data
 app = Flask(__name__)
 app.debug = True
@@ -11,7 +8,7 @@ db = data.load("../data.json")
 
 @app.route("/")
 def start():
-    return render_template("start_page.html")
+    return render_template("start_page.html", data = enumerate(db))
 
 @app.route("/list")
 def list():
