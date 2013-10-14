@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 from flask import Flask, render_template, request
-=======
-from flask import Flask, render_template
->>>>>>> da3d0df705f447e7bca98a6fc6d27c3de11f5adf
 import data
 app = Flask(__name__)
 app.debug = True
@@ -15,10 +11,7 @@ def start():
 
 @app.route("/list")
 def list():
-	project_list = []
-	for project in db:
-		project_list.append(project)
-	return render_template("list.html", data=project_list)
+	return render_template("list.html", data=db)
 
 @app.route("/project/<id>")
 def project(id):
@@ -30,9 +23,11 @@ def techniques():
 
 @app.route("/search", methods=['POST'])
 def search():
-    search_word = request.form['search_word']
-    print(request.form['search_field'])
-    return render_template("list.html", data=data.search(db, search=search_word))
+    search_word = request.form["search_word"]
+    fields = request.form.getlist("field_checkbox") #Returns a list of values of all checked field_checkboxes
+    print(fields)
+
+    return render_template("list.html", data=data.search(db, search=search_word, search_fields=fields))
 
 
 if __name__ == "__main__":
