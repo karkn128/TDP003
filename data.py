@@ -2,6 +2,7 @@ import json
 from operator import itemgetter
 
 def load(filename):
+    """Loads JSON formatted project data from a file and returns a list."""
     try:
         with open(filename) as f:
             data = json.load(f)
@@ -9,15 +10,18 @@ def load(filename):
     except: return None
 
 def get_project_count(db):
+    """Retrieves the number of projects in a project list."""
     return len(db)
 
 def get_project(db, id):
+    """Fetches the project with the specified id from the specified list."""
     for project in db:
         if project["project_no"] == id:
             return project
     return None
 
 def get_techniques(db):
+    """Fetches a list of all the techniques from the specified project list."""
     result = []
     for project in db:
         for technique in project["techniques_used"]:
@@ -26,7 +30,8 @@ def get_techniques(db):
     result.sort()
     return result
 
-def get_technique_stats(db): 
+def get_technique_stats(db):
+    """Collects and returns statistics for all techniques in the specified project list."""
     result = {}
     techniques = get_techniques(db)
     for technique in techniques: #Creates dict with all techniques as keys, empty lists as values
@@ -41,7 +46,8 @@ def get_technique_stats(db):
     return result
 
 def search(db, sort_by=u'start_date', sort_order=u'desc', techniques=None, 
-search=None, search_fields=None):
+search=None, search_fields=None): #Öka läsbarhet
+    """Fetches and sorts projects matching criteria from the specified list."""
     result = [] #List for storage of matching projects
     for project in db:
         project_found = False #Assume project doesn't match search reqs
@@ -53,13 +59,15 @@ search=None, search_fields=None):
             #Fill list with project values from user
             for field in search_fields: 
                 field_list.append(project[field])
+
+        #Elif field_list
         
         #If both search and techniques are sent
         if not search == None and not techniques == None:
             #If all techniques specified are in the project do the text search
             if set(techniques) <= set(project['techniques_used']):
                 #Text search
-                #Case insensitive
+                #Case insensitive 
                 if search.upper() in [str(s).upper() for s in field_list]:
                     project_found = True
         #If only search is sent
@@ -79,7 +87,7 @@ search=None, search_fields=None):
             result.append(project)  
 
     #Sort list ***************************
-    result.sort(key=itemgetter(sort_by))
+    result.sort(key=itemgetter(sort_by)) #Kolla om det går att fixa med parametrar
     if sort_order == 'desc':
         result.reverse()
 
