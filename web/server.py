@@ -16,9 +16,9 @@ def list():
 	db = data.load("data.json") 
 	return render_template("list.html", data=[db, data.get_techniques(db)])
 
-@app.route("/project/<id>")
+@app.route("/project/<int:id>")
 def project(id):
-	db = data.load("../data.json") 
+	db = data.load("data.json") 
 	return render_template("project.html", data=data.get_project(db, int(id)))
 
 @app.route("/techniques")
