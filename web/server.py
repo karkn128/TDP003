@@ -19,7 +19,10 @@ def list():
 @app.route("/project/<int:id>")
 def project(id):
 	db = data.load("data.json") 
-	return render_template("project.html", data=data.get_project(db, int(id)))
+	if data.get_project(db, int(id)) == None:
+		return render_template("not_found.html", data=id)
+	else:
+		return render_template("project.html", data=data.get_project(db, int(id)))
 
 @app.route("/techniques")
 def techniques():
@@ -28,7 +31,8 @@ def techniques():
 
 @app.route("/search", methods=['POST'])
 def search():
-	db = data.load("data.json")  
+	db = data.load("data.json")
+
 	if request.form["search_word"] == "":
 		search_word = None
 	else:
