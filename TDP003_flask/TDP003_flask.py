@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request
 
 import data
@@ -8,6 +9,7 @@ db = data.load("../data.json")
 
 @app.route("/")
 def start():
+ 
     return render_template("start_page.html", data = enumerate(db))
 
 @app.route("/list")
