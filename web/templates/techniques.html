@@ -1,0 +1,20 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<ul>
+  {% for technique in data %}
+  <li> {{technique}} </li>
+  <ul>
+    {% for project in data[technique] %}
+    <li> {{project['id']}} . <a href="/project/{{project['id']}}"> {{project['name']}}</a> </li>
+    {% endfor %}
+    </ul>
+
+  
+
+  {% endfor %}
+
+</ul>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<ul>
+	<li>Projekt id: {{data["project_no"]}}</li>
+	<li>Projekt: {{data["project_name"]}}</li>
+	<li>Course name: {{data["course_name"]}}</li>
+	<li>Course ID: {{data["course_id"]}}
+	<li>Start date: {{data["start_date"]}}</li>
+	<li>End date: {{data["end_date"]}}</li>
+	<li>Group size: {{data["group_size"]}}</li>
+	<li>Academic credits: {{data["academic_credits"]}}</li>
+	<li>Techniques used</li>
+	<ul>
+		{% for technique in data["techniques_used"] %}
+			<li>{{technique}}</li>
+		{% endfor %}
+	</ul>
+	<li>Description: {{data["long_description"]}}</li>
+</ul>
+{% endblock %}
