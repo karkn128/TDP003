@@ -5,14 +5,11 @@
 <ul>
   {% for technique in data %}
   <li> {{technique}} </li>
-  <ul>
+  <li><ul>
     {% for project in data[technique] %}
     <li> {{project['id']}} . <a href="/project/{{project['id']}}"> {{project['name']}}</a> </li>
     {% endfor %}
-    </ul>
-
-  
-
+   </ul></li>
   {% endfor %}
 
 </ul>
