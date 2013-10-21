@@ -3,7 +3,7 @@
 
 {% block content %}
 <form action="search" method="POST">
-    <input name="search_word"></input>
+    <input name="search_word">
     <br>
     Search fields:
     <br>
@@ -26,21 +26,26 @@
 	<br>
 	Sort by:
  	<select name="sort_by">
- 	 <option value="project_no">Projekt ID</option>
-  	 <option value="project_name">Projekt Namn</option>
-  	 <option value="course_id">Course ID</opton>
-  	 <option value="short_description">Description</opton>
+ 	 <option value="project_no">Projekt ID
+  	 <option value="project_name">Projekt Namn
+  	 <option value="course_id">Course ID
+  	 <option value="short_description">Description
 	</select>
 	<br>
-    <input type="submit" value="Search"></input>
+    <input type="submit" value="Search">
 </form>
 {% for project in data[0] %}
+<<<<<<< HEAD
     <img src="{{project['small_image']}}">
+=======
+<ul>
+>>>>>>> b7795e747fcfced25a0e46b629dd6361382c0bb2
 	<li>Projekt: <a href="/project/{{project['project_no']}}"> {{project['project_name']}}</a></li>
 	<li>Projekt id: {{project["project_no"]}}</li>
 	<li>Course name: {{project["course_name"]}}</li>
 	<li>Course ID: {{project["course_id"]}}
 	<li>Description: {{project["short_description"]}}</li>
+</ul>
 	<br>
 {% endfor %}
 

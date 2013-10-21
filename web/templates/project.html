@@ -11,11 +11,11 @@
 	<li>Group size: {{data["group_size"]}}</li>
 	<li>Academic credits: {{data["academic_credits"]}}</li>
 	<li>Techniques used</li>
-	<ul>
+	<li><ul>
 		{% for technique in data["techniques_used"] %}
 			<li>{{technique}}</li>
 		{% endfor %}
-	</ul>
+	</ul></li>
 	<li>Description: {{data["long_description"]}}</li>
 </ul>
 {% endblock %}
