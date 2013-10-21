@@ -3,3 +3,7 @@ h1 {
     color: yellow;
     background-color: blue;
 }
+
+nav {
+  height:40px;
+}

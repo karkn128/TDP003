@@ -46,7 +46,7 @@ def get_technique_stats(db):
     return result
 
 def search(db, sort_by=u'start_date', sort_order=u'desc', techniques=None, 
-search=None, search_fields=None): #Öka läsbarhet
+search=None, search_fields=None): 
     """Fetches and sorts projects matching criteria from the specified list."""
     result = [] #List for storage of matching projects
     for project in db:
@@ -60,8 +60,7 @@ search=None, search_fields=None): #Öka läsbarhet
             for field in search_fields: 
                 field_list.append(project[field])
 
-        #Elif field_list
-        
+
         #If both search and techniques are sent
         if not search == None and not techniques == None:
             #If all techniques specified are in the project do the text search
@@ -87,7 +86,7 @@ search=None, search_fields=None): #Öka läsbarhet
             result.append(project)  
 
     #Sort list ***************************
-    result.sort(key=itemgetter(sort_by)) #Kolla om det går att fixa med parametrar
+    result.sort(key=itemgetter(sort_by)) 
     if sort_order == 'desc':
         result.reverse()
 
