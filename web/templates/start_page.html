@@ -6,8 +6,7 @@
 {% for index, project in data%}
 <article>
 {% if index <= 2: %}
-	<h3>    {{project["project_name"]}} </h3>
-<br>
+	<h3>    <a href="/project/{{project['project_no']}}"> {{project['project_name']}}</a> </h3>
 	<p>    {{project["short_description"]}}  </p>
 {% endif %}
 </article>
