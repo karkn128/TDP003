@@ -35,11 +35,8 @@
     <input type="submit" value="Search">
 </form>
 {% for project in data[0] %}
-<<<<<<< HEAD
     <img src="{{project['small_image']}}">
-=======
 <ul>
->>>>>>> b7795e747fcfced25a0e46b629dd6361382c0bb2
 	<li>Projekt: <a href="/project/{{project['project_no']}}"> {{project['project_name']}}</a></li>
 	<li>Projekt id: {{project["project_no"]}}</li>
 	<li>Course name: {{project["course_name"]}}</li>
