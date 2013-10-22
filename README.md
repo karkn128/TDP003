@@ -3,3 +3,4 @@ Bilder
 ,-projektet - dubbellista
 Blueprint
 Sökfunktionen - ensamma ord
+Söksidan - Boxar som standard?
