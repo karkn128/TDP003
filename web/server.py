@@ -1,8 +1,10 @@
 import logging
-from flask import Flask, render_template, request
-
+from flask import Flask, render_template, request, Blueprint
 import data
+
 app = Flask(__name__)
+images = Blueprint('images', __name__, template_folder="images")
+app.register_blueprint(images)
 app.debug = True
 
 @app.route("/")
@@ -46,6 +48,9 @@ def search():
 	data_search = data.search(db, search=search_word, search_fields=fields, techniques=techniques, sort_order=sort_order, sort_by=sort_by)
 	return render_template("list.html", data=[data_search, data.get_techniques(db)])
 
+@app.errorhandler(404)
+def pageNotFound(error):
+		return render_template("error404.html", data=error)
 
 if __name__ == "__main__":
 	logging.basicConfig(filename='serverlog.log',level=logging.DEBUG)
