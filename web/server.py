@@ -1,16 +1,20 @@
 import logging
-from flask import Flask, render_template, request, Blueprint
+from flask import Flask, render_template, request, Blueprint, send_from_directory
 import data
 
 app = Flask(__name__)
-images = Blueprint('images', __name__, template_folder="images")
-app.register_blueprint(images)
+#images = Blueprint('images', __name__, template_folder="images")
+#app.register_blueprint(images)
 app.debug = True
+
+@app.route('/uploads/<filename>')
+def send_file(filename):
+    return send_from_directory('static/images', filename)
 
 @app.route("/")
 def start():
 	db = data.load("data.json") 
-	return render_template("start_page.html", data = enumerate(db))
+	return render_template("start_page.html", data=enumerate(db))
  
 
 @app.route("/list")
